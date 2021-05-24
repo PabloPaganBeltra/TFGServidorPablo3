@@ -16,7 +16,7 @@ app.use(cors());
 app.use( express.json({extended:true}) );
 
 //Puerto de la app
-const PORT = process.env.PROT || 4000;
+const port = process.env.PROT || 4000;
 
 //Definir pagina principal
 app.get('/', (req, res)=>{
@@ -30,7 +30,7 @@ app.use('/api/proyectos', require('./routes/proyectos'));
 app.use('/api/tareas', require('./routes/tareas'));
 
 //Arrancar server
-app.listen(PORT, ()=>{
-    console.log('El servidor esta funcionando en el puerto',PORT);
+app.listen(port, '0.0.0.0', ()=>{
+    console.log('El servidor esta funcionando en el puerto',port);
 });
 

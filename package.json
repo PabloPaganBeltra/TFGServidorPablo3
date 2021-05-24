@@ -4,7 +4,7 @@
   "description": "Servidor para mi tfg de gestion de proyectos",
   "main": "index.js",
   "scripts": {
-    "start": "node .",
+    "start": "node src/index.js",
     "dev": "nodemon ."
   },
   "author": "Pablo Pagán Beltrá",

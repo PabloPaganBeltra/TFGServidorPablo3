@@ -8,7 +8,7 @@ const app = express();
 
 var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function () {
-  if (this.readyState == 4 && this.status == 200) {
+  if (this.readyState === 4 && this.status === 200) {
     console.log(xhttp.responseText);
   } else {
     console.log("error")
@@ -19,9 +19,7 @@ xhttp.send();
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Accept');
-    res.setHeader('Access-Control-Allow-Credentials', true);
     next();
 });
 

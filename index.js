@@ -1,4 +1,4 @@
-const { request } = require('express');
+const { req } = require('express');
 const express = require('express');
 const conectarDB = require('./config/db');
 const cors = require('cors');
@@ -6,7 +6,7 @@ const cors = require('cors');
 //Creando el servidor
 const app = express();
 
-app.use(function (request, res, next) {
+app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Accept');
     next();
@@ -25,7 +25,7 @@ app.use( express.json({extended:true}) );
 const port = process.env.PORT || 4000;
 console.log(cors);
 //Definir pagina principal
-app.get('/', (request, res)=>{
+app.get('/', (req, res)=>{
     res.send('hola mundo')
 });
 

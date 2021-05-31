@@ -5,7 +5,7 @@ const cors = require('cors');
 //Creando el servidor
 const app = express();
 
-var xhttp = new XMLHttpRequest();
+var xhttp = XMLHttpRequest();
 xhttp.onreadystatechange = function() {
         console.log(xhttp.responseText)
 

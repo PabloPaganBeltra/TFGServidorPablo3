@@ -1,4 +1,3 @@
-const { req } = require('express');
 const express = require('express');
 const conectarDB = require('./config/db');
 const cors = require('cors');
@@ -6,21 +5,12 @@ const cors = require('cors');
 //Creando el servidor
 const app = express();
 
-app.use(function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
-    next();
-
-    next();
-});
-
 //Conectar a la base de datos
 conectarDB();
 
 //habilitar cors
-app.use(cors());
+app.use(cors({ credentials: true, origin: true }));
+app.options("*", cors());
 
 //habilitar express.json
 app.use( express.json({extended:true}) );

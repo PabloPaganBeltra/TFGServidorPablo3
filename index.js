@@ -1,40 +1,30 @@
-const express = require('express');
-const conectarDB = require('./config/db');
-const cors = require('cors');
+const express = require("express");
+const conectarDB = require("./config/db");
+const cors = require("cors");
 
-//Creando el servidor
+//  Crear el servidor
 const app = express();
 
-//Conectar a la base de datos
+//  Conectamos a la base de datos
 conectarDB();
 
-//habilitar cors
+//  Habilitamos cors
 app.use(cors());
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-  });
 
-//habilitar express.json
-app.use( express.json({extended:true}) );
+//  Habilitar express.json para poder hacer res.json
+app.use(express.json({ extended: true }));
 
-//Puerto de la app
-const port = process.env.PORT || 4000;
+//  Habla algo de "erocu", se supone que revisa si tenemos un puerto configurado, si no, utilizará el 4000
+const PORT = process.env.PORT || 4000;
 
-//Definir pagina principal
-app.get('/', (req, res)=>{
-    res.send('hola mundo')
+//  Importamos rutas de los usuarios para que express las pueda manejar
+app.use("/api/usuarios", require("./routes/usuarioRoutes"));
+app.use("/api/auth", require("./routes/authRoutes"));
+app.use("/api/boards", require("./routes/boardRoutes"));
+// app.use("/api/queues", require("./routes/queueRoutes"));
+// app.use("/api/boards/:board/queues", require("./routes/queueRoutes"));
+
+//  Arrancamos el servidor
+app.listen(PORT, () => {
+  console.log(`El servidor está funcionando en el puerto ${PORT}`);
 });
-
-//importar rutas
-app.use('/api/usuarios', require('./routes/usuarios'));
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/proyectos', require('./routes/proyectos'));
-app.use('/api/tareas', require('./routes/tareas'));
-
-//Arrancar server
-app.listen(port, '0.0.0.0', ()=>{
-    console.log('El servidor esta funcionando en el puerto',port);
-});
-

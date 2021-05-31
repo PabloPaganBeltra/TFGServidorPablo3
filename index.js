@@ -8,7 +8,9 @@ const app = express();
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Accept');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
     next();
 });
 
@@ -23,7 +25,7 @@ app.use( express.json({extended:true}) );
 
 //Puerto de la app
 const port = process.env.PORT || 4000;
-console.log(cors);
+
 //Definir pagina principal
 app.get('/', (req, res)=>{
     res.send('hola mundo')

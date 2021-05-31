@@ -17,12 +17,11 @@ app.use(express.json({ extended: true }));
 //  Habla algo de "erocu", se supone que revisa si tenemos un puerto configurado, si no, utilizará el 4000
 const PORT = process.env.PORT || 4000;
 
-//  Importamos rutas de los usuarios para que express las pueda manejar
-app.use("/api/usuarios", require("./routes/usuarioRoutes"));
-app.use("/api/auth", require("./routes/authRoutes"));
-app.use("/api/boards", require("./routes/boardRoutes"));
-// app.use("/api/queues", require("./routes/queueRoutes"));
-// app.use("/api/boards/:board/queues", require("./routes/queueRoutes"));
+//importar rutas
+app.use('/api/usuarios', require('./routes/usuarios'));
+app.use('/api/auth', require('./routes/auth'));
+app.use('/api/proyectos', require('./routes/proyectos'));
+app.use('/api/tareas', require('./routes/tareas'));
 
 //  Arrancamos el servidor
 app.listen(PORT, () => {

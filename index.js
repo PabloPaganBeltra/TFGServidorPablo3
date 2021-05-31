@@ -31,7 +31,8 @@ app.options('*', cors());
 conectarDB();
 
 //habilitar cors
-// app.use(cors());
+cors({credentials: true, origin: true})
+app.use(cors());
 app.use(cors(corsOpts));
 
 //habilitar express.json

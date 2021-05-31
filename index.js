@@ -25,6 +25,7 @@ app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Credentials', true);
     next();
 });
+app.options('*', cors());
 
 //Conectar a la base de datos
 conectarDB();

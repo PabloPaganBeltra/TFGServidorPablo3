@@ -2,24 +2,12 @@ const { request } = require('express');
 const express = require('express');
 const conectarDB = require('./config/db');
 const cors = require('cors');
-const corsOpts = {
-    origin: '*',
-  
-    methods: [
-      'GET',
-      'POST',
-    ],
-  
-    allowedHeaders: [
-      'Content-Type',
-    ],
-  };
 
 //Creando el servidor
 const app = express();
 
 app.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8888');
+    res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
     res.setHeader('Access-Control-Allow-Credentials', true);
@@ -31,9 +19,7 @@ app.options('*', cors());
 conectarDB();
 
 //habilitar cors
-cors({credentials: true, origin: true})
-app.use(cors());
-app.use(cors(corsOpts));
+app.use(cors({credentials: true, origin: true}));
 
 //habilitar express.json
 app.use( express.json({extended:true}) );

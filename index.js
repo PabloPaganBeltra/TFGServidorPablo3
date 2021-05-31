@@ -6,18 +6,7 @@ const cors = require('cors');
 //Creando el servidor
 const app = express();
 
-const xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function () {
-  if (this.readyState === 4 && this.status === 200) {
-    console.log(xhttp.responseText);
-  } else {
-    console.log("error")
-  }
-};
-xhttp.open("GET", "https://git.heroku.com/tfgservidor.git/api/auth", true);
-xhttp.send();
-
-app.use(function (req, res, next) {
+app.use(function (request, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Accept');
     next();
@@ -27,7 +16,7 @@ app.use(function (req, res, next) {
 conectarDB();
 
 //habilitar cors
-app.use(cors({credentials: true, origin: true}));
+app.use(cors());
 
 //habilitar express.json
 app.use( express.json({extended:true}) );
@@ -36,7 +25,7 @@ app.use( express.json({extended:true}) );
 const port = process.env.PORT || 4000;
 
 //Definir pagina principal
-app.get('/', (req, res)=>{
+app.get('/', (request, res)=>{
     res.send('hola mundo')
 });
 

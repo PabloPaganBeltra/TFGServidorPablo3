@@ -18,6 +18,7 @@ app.use(function(req, res, next) {
 //habilitar cors
 app.use(cors({ credentials: true }));
 app.options("*", cors());
+console.log(cors);
 
 //habilitar express.json
 app.use( express.json({extended:true}) );

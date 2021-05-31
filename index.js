@@ -30,7 +30,7 @@ app.use(function (req, res, next) {
 conectarDB();
 
 //habilitar cors
-app.use(cors());
+// app.use(cors());
 app.use(cors(corsOpts));
 
 //habilitar express.json

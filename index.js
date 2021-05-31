@@ -2,6 +2,18 @@ const { request } = require('express');
 const express = require('express');
 const conectarDB = require('./config/db');
 const cors = require('cors');
+const corsOpts = {
+    origin: '*',
+  
+    methods: [
+      'GET',
+      'POST',
+    ],
+  
+    allowedHeaders: [
+      'Content-Type',
+    ],
+  };
 
 //Creando el servidor
 const app = express();
@@ -19,6 +31,7 @@ conectarDB();
 
 //habilitar cors
 app.use(cors());
+app.use(cors(corsOpts));
 
 //habilitar express.json
 app.use( express.json({extended:true}) );

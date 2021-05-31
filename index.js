@@ -8,17 +8,8 @@ const app = express();
 //Conectar a la base de datos
 conectarDB();
 
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*"); 
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.header('Access-Control-Allow-Methods', '*');
-    next();
-  });
-
 //habilitar cors
-app.use(cors({ credentials: true }));
-app.options("*", cors());
-console.log(cors);
+app.use(cors());
 
 //habilitar express.json
 app.use( express.json({extended:true}) );

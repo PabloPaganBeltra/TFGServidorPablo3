@@ -10,20 +10,16 @@ exports.crearUsuario = async ( req, res )=> {
     if(!errores.isEmpty()){
         return res.status(400).json({errores: errores.array()})
     }
-
     //extraer email y password
     const{ email , password} =req.body;
-
     
     try{
-
         //revisar que el usuario registrado sea unico
         let usuario = await Usuario.findOne({ email });
 
         if(usuario){
             return res.status(400).json({msg: 'El usuario ya existe'});
         }
-
 
         //crea nuevo usuario
         usuario = new Usuario(req.body);
@@ -41,7 +37,6 @@ exports.crearUsuario = async ( req, res )=> {
                 id: usuario.id
             }
         };
-
         //firmar el jwt
         jwt.sign(payload, process.env.SECRETA, {
             expiresIn: 3600 //una hora
@@ -51,12 +46,8 @@ exports.crearUsuario = async ( req, res )=> {
             //Mensaje de confirmacion
             res.json({ token });
         });
-
-        
-
     }catch(error){
         console.log(error);
         res.status(400).send('Hubo un error');
     }
-
 }
